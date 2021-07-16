@@ -1,0 +1,893 @@
+game:GetService("ReplicatedStorage").Block:FireServer(true)
+game:GetService("ReplicatedStorage").Deflect:FireServer(true)
+  
+local plr = game:GetService("Players").LocalPlayer
+local chr = plr.Character
+local human = chr.Humanoid
+local hrp = chr.HumanoidRootPart
+local Player = game:GetService("Players").LocalPlayer
+local rStorage = game:GetService("ReplicatedStorage")
+local Players = game.Players
+local LocalPlayer = game.Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local Character = LocalPlayer.Character
+local e = false
+local Barraging = false
+local Barraging2 = false
+mouse = plr:GetMouse()
+local rs = game:GetService("ReplicatedStorage")
+local human = game.Players.LocalPlayer.Character.Humanoid
+local hrp = human.Parent.HumanoidRootPart
+local damagebypass = game.ReplicatedStorage["ﾚのﾚ刀ズﾌ乇ﾑん尺Wひ乇んﾌ"]
+damagebypass:FireServer(human, hrp.CFrame, -math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+local aura = false
+ -- local for bypass
+ local mystand = nil
+ for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren())do
+if v:IsA("LocalScript") and v.Name ~= "ClientSidedTween" and v.Name ~= "Client" then
+ 
+ v:Destroy()
+ 
+end
+end
+ 
+ -- gui setup
+local SettingsToggleButton = Instance.new("ImageButton")
+local SpecGui = Instance.new("ScreenGui")
+local SettingsFrameMaster = Instance.new("Frame")
+local SettingsAuraToggle = Instance.new("TextButton")
+local SettingsWhiteAura = Instance.new("TextButton")
+local SettingsLegacyAura = Instance.new("TextButton")
+local SettingsSettingsLabelText = Instance.new("TextLabel")
+local SettingsUiBorderGradient = Instance.new("Frame")
+local UIGradient = Instance.new("UIGradient")
+local ChangelogText = Instance.new("TextLabel")
+local MoveListText = Instance.new("TextLabel")
+local SettingsText = Instance.new("TextLabel")
+local TextLabel = Instance.new("TextLabel")
+local Frame = Instance.new("Frame")
+local LoginGUI = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local Gamer = Instance.new("Frame")
+local LoginTextBox = Instance.new("TextBox")
+local LoginText = Instance.new("TextLabel")
+local LoginButton = Instance.new("TextButton")
+
+--Properties:
+
+SpecGui.Name = "SpecGui"
+SpecGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+SettingsToggleButton.Name = "SettingsToggleButton"
+SettingsToggleButton.Parent = SpecGui
+SettingsToggleButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SettingsToggleButton.Position = UDim2.new(0.966687679, 0, 0.944384992, 0)
+SettingsToggleButton.Size = UDim2.new(0, 52, 0, 52)
+SettingsToggleButton.Style = Enum.ButtonStyle.RobloxRoundButton
+SettingsToggleButton.Image = "rbxassetid://7090272468"
+
+SettingsFrameMaster.Name = "Settings/FrameMaster"
+SettingsFrameMaster.Parent = SpecGui
+SettingsFrameMaster.BackgroundColor3 = Color3.fromRGB(161, 207, 255)
+SettingsFrameMaster.BorderSizePixel = 0
+SettingsFrameMaster.Position = UDim2.new(-0.0127601931, 0, 0.00641711149, 0)
+SettingsFrameMaster.Size = UDim2.new(0, 498, 0, 929)
+SettingsFrameMaster.Visible = false
+
+SettingsAuraToggle.Name = "Settings/AuraToggle"
+SettingsAuraToggle.Parent = SettingsFrameMaster
+SettingsAuraToggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SettingsAuraToggle.Position = UDim2.new(0.0783132464, 0, 0.0344456397, 0)
+SettingsAuraToggle.Size = UDim2.new(0, 441, 0, 50)
+SettingsAuraToggle.Style = Enum.ButtonStyle.RobloxRoundButton
+SettingsAuraToggle.Font = Enum.Font.PermanentMarker
+SettingsAuraToggle.Text = "AURA TOGGLE"
+SettingsAuraToggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+SettingsAuraToggle.TextSize = 40.000
+
+SettingsWhiteAura.Name = "Settings/WhiteAura"
+SettingsWhiteAura.Parent = SettingsFrameMaster
+SettingsWhiteAura.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SettingsWhiteAura.Position = UDim2.new(0.076305218, 0, 0.234660923, 0)
+SettingsWhiteAura.Size = UDim2.new(0, 441, 0, 50)
+SettingsWhiteAura.Style = Enum.ButtonStyle.RobloxRoundButton
+SettingsWhiteAura.Font = Enum.Font.PermanentMarker
+SettingsWhiteAura.Text = "WHITE AURA"
+SettingsWhiteAura.TextColor3 = Color3.fromRGB(0, 0, 0)
+SettingsWhiteAura.TextSize = 40.000
+
+SettingsLegacyAura.Name = "Settings/LegacyAura"
+SettingsLegacyAura.Parent = SettingsFrameMaster
+SettingsLegacyAura.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SettingsLegacyAura.Position = UDim2.new(0.076305218, 0, 0.306781501, 0)
+SettingsLegacyAura.Size = UDim2.new(0, 441, 0, 50)
+SettingsLegacyAura.Style = Enum.ButtonStyle.RobloxRoundButton
+SettingsLegacyAura.Font = Enum.Font.PermanentMarker
+SettingsLegacyAura.Text = "LEGACY AURA"
+SettingsLegacyAura.TextColor3 = Color3.fromRGB(0, 0, 0)
+SettingsLegacyAura.TextSize = 40.000
+
+SettingsSettingsLabelText.Name = "Settings/SettingsLabelText"
+SettingsSettingsLabelText.Parent = SettingsFrameMaster
+SettingsSettingsLabelText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SettingsSettingsLabelText.BackgroundTransparency = 1.000
+SettingsSettingsLabelText.Position = UDim2.new(0.309236944, 0, 0, 0)
+SettingsSettingsLabelText.Size = UDim2.new(0, 200, 0, 32)
+SettingsSettingsLabelText.Font = Enum.Font.PermanentMarker
+SettingsSettingsLabelText.Text = "SETTINGS"
+SettingsSettingsLabelText.TextColor3 = Color3.fromRGB(0, 0, 0)
+SettingsSettingsLabelText.TextSize = 40.000
+
+SettingsUiBorderGradient.Name = "Settings/UiBorderGradient"
+SettingsUiBorderGradient.Parent = SettingsFrameMaster
+SettingsUiBorderGradient.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SettingsUiBorderGradient.BorderSizePixel = 0
+SettingsUiBorderGradient.Position = UDim2.new(-0.012760208, 0, 0, 0)
+SettingsUiBorderGradient.Size = UDim2.new(0, 512, 0, 931)
+SettingsUiBorderGradient.ZIndex = -1
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(148, 255, 243)), ColorSequenceKeypoint.new(0.00, Color3.fromRGB(117, 199, 252)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(111, 188, 255))}
+UIGradient.Parent = SettingsUiBorderGradient
+
+ChangelogText.Name = "Changelog/Text"
+ChangelogText.Parent = SettingsFrameMaster
+ChangelogText.BackgroundColor3 = Color3.fromRGB(117, 199, 253)
+ChangelogText.BorderSizePixel = 0
+ChangelogText.Position = UDim2.new(0.0763052255, 0, 0.447793335, 0)
+ChangelogText.Size = UDim2.new(0, 220, 0, 505)
+ChangelogText.ZIndex = 2
+ChangelogText.Font = Enum.Font.PermanentMarker
+ChangelogText.Text = [[
+V1 Gaming Spec:
+Released - Thanks to ItsZach 
+]]
+ChangelogText.TextColor3 = Color3.fromRGB(0, 0, 0)
+ChangelogText.TextSize = 23.000
+ChangelogText.TextWrapped = true
+ChangelogText.TextYAlignment = Enum.TextYAlignment.Top
+
+MoveListText.Name = "MoveList/Text"
+MoveListText.Parent = SettingsFrameMaster
+MoveListText.BackgroundColor3 = Color3.fromRGB(117, 199, 253)
+MoveListText.BorderSizePixel = 0
+MoveListText.Position = UDim2.new(0.499999911, 0, 0.447793335, 0)
+MoveListText.Size = UDim2.new(0, 230, 0, 505)
+MoveListText.ZIndex = 2
+MoveListText.Font = Enum.Font.PermanentMarker
+MoveListText.Text = [[
+Movelist -
+-----------------------
+E - Gaming barrage
+-----------------------
+R - Strong Punch 
+-----------------------
+V - Tp 
+-----------------------
+Y - Obama (Roar) 
+-----------------------
+F - Poison Punch
+-----------------------
+G - Hyper Heal
+-----------------------
+J - Chad Energy (Roar)
+-----------------------
+K - Aura Boost
+-----------------------
+]]
+MoveListText.TextColor3 = Color3.fromRGB(0, 0, 0)
+MoveListText.TextSize = 23.000
+MoveListText.TextWrapped = true
+MoveListText.TextYAlignment = Enum.TextYAlignment.Top
+
+SettingsText.Name = "Settings/Text"
+SettingsText.Parent = SettingsFrameMaster
+SettingsText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SettingsText.BackgroundTransparency = 1.000
+SettingsText.Position = UDim2.new(0.0301204808, 0, 0.139630318, 0)
+SettingsText.Size = UDim2.new(0, 477, 0, 123)
+SettingsText.Font = Enum.Font.PermanentMarker
+SettingsText.Text = "AURA CHANGER"
+SettingsText.TextColor3 = Color3.fromRGB(0, 0, 0)
+SettingsText.TextSize = 40.000
+
+TextLabel.Parent = SettingsFrameMaster
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Position = UDim2.new(0.317269087, 0, 0.371367067, 0)
+TextLabel.Size = UDim2.new(0, 200, 0, 50)
+TextLabel.Font = Enum.Font.PermanentMarker
+TextLabel.Text = "CREDITS TO LOLOK FOR MAKING GUI, DRIPPING SPY FOR HELPING ME MAKE THIS SPEC, AND DRIP GOKU FOR THE IDEAS"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+Frame.Parent = SettingsFrameMaster
+Frame.BackgroundColor3 = Color3.fromRGB(61, 171, 255)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.0622489974, 0, 0.437029064, 0)
+Frame.Size = UDim2.new(0, 457, 0, 523)
+
+LoginGUI.Name = "LoginGUI"
+LoginGUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = LoginGUI
+MainFrame.BackgroundColor3 = Color3.fromRGB(85, 170, 255)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0.583909512, 0, 0.365775406, 0)
+MainFrame.Size = UDim2.new(0, 451, 0, 185)
+
+Gamer.Name = "Gamer"
+Gamer.Parent = MainFrame
+Gamer.BackgroundColor3 = Color3.fromRGB(69, 139, 208)
+Gamer.BorderSizePixel = 0
+Gamer.Position = UDim2.new(-0.0304580312, 0, 0, 0)
+Gamer.Size = UDim2.new(0, 451, 0, 185)
+
+LoginTextBox.Name = "LoginTextBox"
+LoginTextBox.Parent = MainFrame
+LoginTextBox.BackgroundColor3 = Color3.fromRGB(55, 111, 167)
+LoginTextBox.BorderSizePixel = 0
+LoginTextBox.Position = UDim2.new(0.0266075395, 0, 0.610810816, 0)
+LoginTextBox.Size = UDim2.new(0, 408, 0, 50)
+LoginTextBox.Font = Enum.Font.SourceSans
+LoginTextBox.Text = ""
+LoginTextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+LoginTextBox.TextScaled = true
+LoginTextBox.TextSize = 14.000
+LoginTextBox.TextWrapped = true
+
+LoginText.Name = "LoginText"
+LoginText.Parent = MainFrame
+LoginText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LoginText.BackgroundTransparency = 1.000
+LoginText.Position = UDim2.new(0.0266075395, 0, 0.200000003, 0)
+LoginText.Size = UDim2.new(0, 408, 0, 50)
+LoginText.Font = Enum.Font.PermanentMarker
+LoginText.Text = "LOGIN HERE"
+LoginText.TextColor3 = Color3.fromRGB(0, 0, 0)
+LoginText.TextScaled = true
+LoginText.TextSize = 14.000
+LoginText.TextWrapped = true
+
+LoginButton.Name = "LoginButton"
+LoginButton.Parent = MainFrame
+LoginButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LoginButton.Position = UDim2.new(0.0266075358, 0, 0.264864862, 0)
+LoginButton.Size = UDim2.new(0, 50, 0, 50)
+LoginButton.Style = Enum.ButtonStyle.RobloxRoundDefaultButton
+LoginButton.Font = Enum.Font.PermanentMarker
+LoginButton.Text = "LOGIN"
+LoginButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+LoginButton.TextSize = 14.000
+
+  LoginButton.MouseButton1Down:connect(function()
+    if LoginTextBox.Text == "userkey.345-95487-48435872test" then
+        MainFrame.Visible = false
+    else game:Shutown()
+end
+end)
+
+function timer()
+    wait(30)
+    if MainFrame.Visible == true then
+        game:Shutdown()
+    end
+end
+
+SettingsToggleButton.MouseButton1Click:Connect(function()
+local frame = SettingsFrameMaster
+if frame.Visible == true then
+frame.Visible = false
+else
+frame.Visible = true
+end
+
+SettingsAuraToggle.MouseButton1Click:Connect(function()
+GenerateAura()
+end)
+end)
+
+SettingsWhiteAura.MouseButton1Click:Connect(function()
+GenerateAura2()
+end)
+
+SettingsLegacyAura.MouseButton1Click:Connect(function()
+GenerateAura3()
+end)
+
+
+
+function barrage()
+bangAnim = Instance.new("Animation")
+            bangAnim.AnimationId = "rbxassetid://6480378213"
+            bang = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(bangAnim)
+            Barraging = true
+            bang:Play()
+            bang:AdjustSpeed(3)
+             repeat wait()
+                 game:GetService("ReplicatedStorage").FistFlyEffect:FireServer()
+                 hito(Player.Character["Right Arm"])
+                 hito(Player.Character["Left Arm"])
+             until Barraging == false
+             bang:Stop()
+end
+
+Mouse.KeyDown:Connect(function(ke)
+    if ke == "e" then
+        barrage()
+        end
+end)
+
+Mouse.KeyUp:Connect(function(ke)
+    if ke == "e" then
+        Barraging = false
+        end
+end)
+
+function tp()
+local A_1 = BrickColor.Random()
+local Event = game:GetService("ReplicatedStorage").CharaTeleport
+Event:FireServer(A_1)
+Player.Character:SetPrimaryPartCFrame(Player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0.15, -20))
+end
+
+Mouse.KeyDown:Connect(function(ke)
+    if ke == "v" then
+            tp()
+        end
+end)
+
+function strongpunch()
+	    bangAnim = Instance.new("Animation")
+            bangAnim.AnimationId = "rbxassetid://6446216830"
+            bang = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(bangAnim)
+            bang:Play()
+            wait(.3)
+                 hito2(Player.Character["Left Arm"])
+end
+
+Mouse.KeyDown:Connect(function(ke)
+    if ke == "r" then
+        strongpunch()
+        end
+end)
+
+
+function strongpunchpoison()
+	    bangAnim = Instance.new("Animation")
+            bangAnim.AnimationId = "rbxassetid://6446216830"
+            bang = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(bangAnim)
+            bang:Play()
+            wait(.3)
+                 poisonhito(Player.Character["Left Arm"])
+        end
+
+Mouse.KeyDown:Connect(function(ke)
+    if ke == "f" then
+        strongpunchpoison()
+        end
+end)
+
+function strongpunchpoisonheal()
+	    bangAnim = Instance.new("Animation")
+            bangAnim.AnimationId = "rbxassetid://6446216830"
+            bang = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(bangAnim)
+            bang:Play()
+            wait(.3)
+                 poisonhitoheal(Player.Character["Left Arm"])
+        end
+
+Mouse.KeyDown:Connect(function(ke)
+    if ke == "g" then
+        strongpunchpoisonheal()
+        end
+end)
+
+function slash()
+    	    bangAnim = Instance.new("Animation")
+            bangAnim.AnimationId = "rbxassetid://6066163807"
+            bang = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(bangAnim)
+            bang:Play()
+	    wait(0.5)
+            local Event = game:GetService("ReplicatedStorage").CharaSlash
+	    for i = 1,10 do 
+	        wait()
+	    Event:FireServer()
+end
+end
+
+Mouse.KeyDown:Connect(function(ke)
+    if ke == "t" then
+        slash()
+        end
+end)
+
+--hitboxes
+function hito(bodypart)
+    local leftArm = bodypart
+
+    local hitbox1 = Instance.new("Part", game.Players.LocalPlayer.Character)
+    hitbox1.CFrame = leftArm.CFrame
+    hitbox1.Transparency = 1
+    hitbox1.Name = "hitbox1"
+    hitbox1.CanCollide = false
+    hitbox1.Anchored = false
+    hitbox1.Massless = true
+    hitbox1.Color = Color3.new(0,0,0)
+    hitbox1.Size = leftArm.Size * 1.7
+
+    local weld = Instance.new("WeldConstraint", hitbox1)
+    weld.Part0 = hitbox1
+    weld.Part1 = leftArm
+
+    game.Debris:AddItem(hitbox1, 1.3)
+
+    local debounce = false
+    
+    local hitRegister = hitbox1.Touched:Connect(function(hit)
+        if hit.Parent:FindFirstChild("Humanoid") and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+            if debounce == false then
+            debounce = true
+            print(hit.Parent.Name)
+            delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 694.20, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+        hitbox1:Destroy()
+    end
+elseif(hit.Parent.Parent:FindFirstChild("Humanoid")) and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+    if debounce == false then
+        debounce = true
+        print(hit.Parent.Name)
+        delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame,694.20, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+    hitbox1:Destroy()
+    end
+end
+end)
+end
+
+function hitopoison(bodypart)
+    local leftArm = bodypart
+
+    local hitbox1 = Instance.new("Part", game.Players.LocalPlayer.Character)
+    hitbox1.CFrame = leftArm.CFrame
+    hitbox1.Transparency = 1
+    hitbox1.Name = "hitbox1"
+    hitbox1.CanCollide = false
+    hitbox1.Anchored = false
+    hitbox1.Massless = true
+    hitbox1.Color = Color3.new(0,0,0)
+    hitbox1.Size = leftArm.Size * 1.7
+
+    local weld = Instance.new("WeldConstraint", hitbox1)
+    weld.Part0 = hitbox1
+    weld.Part1 = leftArm
+
+    game.Debris:AddItem(hitbox1, 1.3)
+
+    local debounce = false
+    
+    local hitRegister = hitbox1.Touched:Connect(function(hit)
+        if hit.Parent:FindFirstChild("Humanoid") and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+            if debounce == false then
+            debounce = true
+            print(hit.Parent.Name)
+            delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+	repeat wait()
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 2, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+	until hit.Parent.Humanoid.Health == 50
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+        hitbox1:Destroy()
+    end
+elseif(hit.Parent.Parent:FindFirstChild("Humanoid")) and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+    if debounce == false then
+        debounce = true
+        print(hit.Parent.Name)
+        delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+	repeat wait()
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 2, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+	until hit.Parent.Humanoid.Health == 50
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+    hitbox1:Destroy()
+    end
+end
+end)
+end
+ 
+function hito2(bodypart)
+    local leftArm = bodypart
+
+    local hitbox1 = Instance.new("Part", game.Players.LocalPlayer.Character)
+    hitbox1.CFrame = leftArm.CFrame
+    hitbox1.Transparency = 0
+    hitbox1.Name = "hitbox1"
+    hitbox1.CanCollide = false
+    hitbox1.Anchored = false
+    hitbox1.Massless = true
+    hitbox1.Color = Color3.new(0,0,0)
+    hitbox1.Size = Vector3.new(15,15,15)
+
+    local weld = Instance.new("WeldConstraint", hitbox1)
+    weld.Part0 = hitbox1
+    weld.Part1 = leftArm
+
+    game.Debris:AddItem(hitbox1, 1.3)
+
+    local debounce = false
+    
+    local hitRegister = hitbox1.Touched:Connect(function(hit)
+        if hit.Parent:FindFirstChild("Humanoid") and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+            if debounce == false then
+            debounce = true
+            print(hit.Parent.Name)
+            delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 9e999, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+        hitbox1:Destroy()
+    end
+elseif(hit.Parent.Parent:FindFirstChild("Humanoid")) and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+    if debounce == false then
+        debounce = true
+        print(hit.Parent.Name)
+        delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Parent.Humanoid)
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 9e999, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+    hitbox1:Destroy()
+    end
+end
+end)
+end
+
+function hito2poison(bodypart)
+    local leftArm = bodypart
+
+    local hitbox1 = Instance.new("Part", game.Players.LocalPlayer.Character)
+    hitbox1.CFrame = leftArm.CFrame
+    hitbox1.Transparency = 0
+    hitbox1.Name = "hitbox1"
+    hitbox1.CanCollide = false
+    hitbox1.Anchored = false
+    hitbox1.Massless = true
+    hitbox1.Color = Color3.new(0,0,0)
+    hitbox1.Size = Vector3.new(15,15,15)
+
+    local weld = Instance.new("WeldConstraint", hitbox1)
+    weld.Part0 = hitbox1
+    weld.Part1 = leftArm
+
+    game.Debris:AddItem(hitbox1, 1.3)
+
+    local debounce = false
+    
+    local hitRegister = hitbox1.Touched:Connect(function(hit)
+        if hit.Parent:FindFirstChild("Humanoid") and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+            if debounce == false then
+            debounce = true
+            print(hit.Parent.Name)
+            delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+        repeat wait()
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 10, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+	until hit.Parent.Humanoid.Health == 50
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+        hitbox1:Destroy()
+    end
+elseif(hit.Parent.Parent:FindFirstChild("Humanoid")) and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+    if debounce == false then
+        debounce = true
+        print(hit.Parent.Name)
+        delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Parent.Humanoid)
+	repeat wait()
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 10, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+	until hit.Parent.Humanoid.Health == 50
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+    hitbox1:Destroy()
+    end
+end
+end)
+end
+
+function poisonhito(bodypart)
+    local leftArm = bodypart
+
+    local hitbox1 = Instance.new("Part", game.Players.LocalPlayer.Character)
+    hitbox1.CFrame = leftArm.CFrame
+    hitbox1.Transparency = 1
+    hitbox1.Name = "hitbox1"
+    hitbox1.CanCollide = false
+    hitbox1.Anchored = false
+    hitbox1.Massless = true
+    hitbox1.Color = Color3.new(0,0,0)
+    hitbox1.Size = leftArm.Size * 1.7
+
+    local weld = Instance.new("WeldConstraint", hitbox1)
+    weld.Part0 = hitbox1
+    weld.Part1 = leftArm
+
+    game.Debris:AddItem(hitbox1, 1.3)
+
+    local debounce = false
+    
+    local hitRegister = hitbox1.Touched:Connect(function(hit)
+        if hit.Parent:FindFirstChild("Humanoid") and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+            if debounce == false then
+            debounce = true
+            print(hit.Parent.Name)
+            delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+        repeat wait() 
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 15.5, 0, Vector3.new(0,2,0), 0, "", 0, 0)
+	until hit.Parent.Humanoid.Health == 0
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+        hitbox1:Destroy()
+    end
+elseif(hit.Parent.Parent:FindFirstChild("Humanoid")) and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+    if debounce == false then
+        debounce = true
+        print(hit.Parent.Name)
+        delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+	repeat wait()
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 15.5, 0, Vector3.new(0,2,0), 0, "", 0, 0)
+	until hit.Parent.Humanoid.Health == 0
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+    hitbox1:Destroy()
+    end
+end
+end)
+end
+
+function cframexhitbox(cframex)
+    local leftArm = bodypart
+
+    local hitbox1 = Instance.new("Part", game.Players.LocalPlayer.Character)
+    hitbox1.CFrame = CFrame.new(0,0,cframex)
+    hitbox1.Transparency = 1
+    hitbox1.Name = "hitbox1"
+    hitbox1.CanCollide = false
+    hitbox1.Anchored = false
+    hitbox1.Massless = true
+    hitbox1.Color = Color3.new(0,0,0)
+    hitbox1.Size = leftArm.Size * 1.7
+
+    local weld = Instance.new("WeldConstraint", hitbox1)
+    weld.Part0 = hitbox1
+    weld.Part1 = leftArm
+
+    game.Debris:AddItem(hitbox1, 1.3)
+
+    local debounce = false
+    
+    local hitRegister = hitbox1.Touched:Connect(function(hit)
+        if hit.Parent:FindFirstChild("Humanoid") and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+            if debounce == false then
+            debounce = true
+            print(hit.Parent.Name)
+            delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 11000.5, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+        hitbox1:Destroy()
+    end
+elseif(hit.Parent.Parent:FindFirstChild("Humanoid")) and hit.Parent.Name ~= game.Players.LocalPlayer.Name then
+    if debounce == false then
+        debounce = true
+        print(hit.Parent.Name)
+        delay(.001, function() debounce = false end)
+        game.ReplicatedStorage.Knock:FireServer(hit.Parent.Humanoid)
+        damagebypass:FireServer(hit.Parent.Humanoid, hit.Parent.HumanoidRootPart.CFrame, 11000.5, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+        game.ReplicatedStorage.DoppioPin:FireServer(hit.Parent.Parent.Humanoid, 0, 0.25, Vector3.new(-0,0,0))
+    hitbox1:Destroy()
+    end
+end
+end)
+end
+
+
+function gr()
+ 
+ for i,v in pairs(game.Workspace:GetChildren()) do
+        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Name ~= game.Players.LocalPlayer.Name then
+            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < 150 then
+                         damagebypass:FireServer(v.Humanoid, v.Head.CFrame, math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+                         for i = 1,50 do
+                    rStorage.Damage11Oreo:FireServer(Player.Character.Humanoid, v.Head.CFrame , 0, 0, nil, 11, "rbxassetid://2835079178", 1, 0)
+end
+            end
+            end
+            end
+end
+function roar2()
+        wa = Instance.new("Animation")
+            wa.AnimationId = "rbxassetid://5880130209"
+            waa = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(wa)
+            waa:Play()
+                rs.OnePunchManDamage:FireServer(human, hrp.CFrame, 0, 0, Vector3.new(nil, nil, nil), "", 0, Color3.new(0, 255, 0), "rbxassetid://6577701238", 1, 900)  --[[6932928276]]--
+
+            wait(.2)
+            for i = 1,5 do 
+                wait()
+            gr()
+            end
+end
+ Mouse.KeyDown:Connect(function(cock)
+    if cock == "y" then
+        roar2()
+        end
+end)
+
+function gr2()
+ 
+ for i,v in pairs(game.Workspace:GetChildren()) do
+        if v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Name ~= game.Players.LocalPlayer.Name then
+            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.HumanoidRootPart.Position).Magnitude < 150 then
+                         damagebypass:FireServer(v.Humanoid, v.Head.CFrame, math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+                         for i = 1,50 do
+                    rStorage.MIHDamage:FireServer(Player.Character.Humanoid, v.Head.CFrame , 0, 0, nil, 11, "rbxassetid://2835079178", 1, 0)
+		game.ReplicatedStorage.SansYell:FireServer()
+end
+            end
+            end
+            end
+end
+
+function roar()
+        wa = Instance.new("Animation")
+            wa.AnimationId = "rbxassetid://5880130209"
+            waa = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(wa)
+            waa:Play()
+                rs.OnePunchManDamage:FireServer(human, hrp.CFrame, 0, 0, Vector3.new(nil, nil, nil), "", 0, Color3.new(0, 255, 0), "rbxassetid://6577701238", 1, 900)  --[[6932928276]]--
+
+            wait(.2)
+            for i = 1,5 do 
+                wait()
+            gr2()
+            end
+end
+
+ Mouse.KeyDown:Connect(function(cock)
+    if cock == "j" then
+        roar()
+        end
+end)
+
+local auraset = 0
+    function sroijeoijg()
+    if e == false then
+    e = true
+     	Player.Character.Humanoid.WalkSpeed = 70
+		Player.Character.Humanoid.JumpPower = 125
+        	coroutine.resume(coroutine.create(function()
+    repeat wait(0.1)
+    rStorage.CharaTeleport:FireServer(BrickColor.Random())
+    until e == false
+        	end))
+elseif e == true then
+    	Player.Character.Humanoid.WalkSpeed = 16
+		Player.Character.Humanoid.JumpPower = 50
+    e = false
+    end 
+end
+Mouse.KeyDown:Connect(function(cock)
+    if cock == "k" then
+        sroijeoijg()
+        end
+end)
+
+local AuraSetter = 0
+function GenerateAura()
+ if aura == false then
+        aura = true
+     
+        	coroutine.resume(coroutine.create(function()
+    repeat wait()
+  AuraSetter = AuraSetter + 1
+
+                    rStorage.MOHEDamage:FireServer(Player.Character.Humanoid, Player.Character.Torso.CFrame * CFrame.new(math.sin(AuraSetter * 120)*2.5, math.cos(AuraSetter * 50)*2.5, math.sin(AuraSetter * 75)*2.5) , 0, 0, nil, 0., "rbxassetid://2835079178", 1, 0)
+                    rStorage.MOHEDamage:FireServer(Player.Character.Humanoid, Player.Character.Torso.CFrame * CFrame.new(math.sin(AuraSetter * 120)*-2.5, math.cos(AuraSetter * 50)*-2.5, math.sin(AuraSetter * 75)*-2.5) , 0, 0, nil, 0., "rbxassetid://2835079178", 1, 0)
+    until aura == false
+        	end))
+elseif aura == true then
+    aura = false
+    end 
+end
+
+local AuraSetter = 0
+function GenerateAura2()
+ if aura == false then
+        aura = true
+     
+        	coroutine.resume(coroutine.create(function()
+    repeat wait()
+  AuraSetter = AuraSetter + 1
+
+                    rStorage.MIHDamage:FireServer(Player.Character.Humanoid, Player.Character.Torso.CFrame * CFrame.new(math.sin(AuraSetter * 120)*2.5, math.cos(AuraSetter * 50)*2.5, math.sin(AuraSetter * 75)*2.5) , 0, 0, nil, 0.05, "rbxassetid://2835079178", 1, 0)
+                    rStorage.MIHDamage:FireServer(Player.Character.Humanoid, Player.Character.Torso.CFrame * CFrame.new(math.sin(AuraSetter * 120)*-2.5, math.cos(AuraSetter * 50)*-2.5, math.sin(AuraSetter * 75)*-2.5) , 0, 0, nil, 0.05, "rbxassetid://2835079178", 1, 0)
+    until aura == false
+        	end))
+elseif aura == true then
+    aura = false
+    end 
+end
+
+local AuraSetter = 0
+function GenerateAura3()
+    if aura2 == true then return end
+if aura3 == true then return end
+ if aura == false then
+        aura = true
+     
+        	coroutine.resume(coroutine.create(function()
+    repeat wait(0.04)
+  AuraSetter = AuraSetter + 1
+
+                    rStorage.Damage11Oreo:FireServer(Player.Character.Humanoid, Player.Character.Torso.CFrame * CFrame.new(math.sin(AuraSetter * 120)*2.5, math.cos(AuraSetter * 50)*2.5, math.sin(AuraSetter * 75)*2.5) , 0, 0, nil, 0., "rbxassetid://2835079178", 1, 0)
+                    rStorage.Damage11Gaster:FireServer(Player.Character.Humanoid, Player.Character.Torso.CFrame * CFrame.new(math.sin(AuraSetter * 120)*-2.5, math.cos(AuraSetter * 50)*-2.5, math.sin(AuraSetter * 75)*-2.5) , 0, 0, nil, 0., "rbxassetid://2835079178", 1, 0)
+    until aura == false
+        	end))
+elseif aura == true then
+    aura = false
+    end 
+end
+    
+GenerateAura()
+local NewSound = Instance.new("Sound")
+NewSound.SoundId = "rbxassetid://7072057019"
+NewSound.Parent = rs
+NewSound.Name = "MyCustomSound"
+coroutine.resume(coroutine.create(function()
+while true do
+    wait(1)
+    rs.OnePunchManDamage:FireServer(human, hrp.CFrame, 0, 0, Vector3.new(nil, nil, nil), "", 0, Color3.new(0, 255, 0), NewSound.SoundId, 1, 500)  --[[6932928276]]--
+    wait(NewSound.TimeLength)
+ end
+end))
+coroutine.resume(coroutine.create(function()
+while wait() do
+    if Player.Character.Humanoid.Health < 0 then
+        game:GetService("ReplicatedStorage").GetUp:FireServer() 
+
+damagebypass:FireServer(human, hrp.CFrame, -math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+end
+end
+end))
+
+game.Lighting.TS.Changed:Connect(function()
+	if game.Lighting.TS.Value == true then
+	   wait()
+	anchorevent:FireServer(ntorso ,false)
+	anchorevent:FireServer(rightarm ,false)
+	anchorevent:FireServer(leftarm ,false)
+	anchorevent:FireServer(rightleg ,false)
+	anchorevent:FireServer(leftleg ,false)
+	anchorevent:FireServer(head ,false)
+ 
+	elseif game.Lighting.TS.Value == false then
+	anchorevent:FireServer(ntorso ,false)
+	anchorevent:FireServer(rightarm ,false)
+	anchorevent:FireServer(leftarm ,false)
+	anchorevent:FireServer(rightleg ,false)
+	anchorevent:FireServer(leftleg ,false)
+	anchorevent:FireServer(head ,false)
+	end
+end)
+ 
+if game.Lighting.TS.Value == true then
+	anchorevent:FireServer(ntorso ,false)
+	anchorevent:FireServer(rightarm ,false)
+	anchorevent:FireServer(leftarm ,false)
+	anchorevent:FireServer(rightleg ,false)
+	anchorevent:FireServer(leftleg ,false)
+	anchorevent:FireServer(head ,false)
+end
+ 
+timer()
