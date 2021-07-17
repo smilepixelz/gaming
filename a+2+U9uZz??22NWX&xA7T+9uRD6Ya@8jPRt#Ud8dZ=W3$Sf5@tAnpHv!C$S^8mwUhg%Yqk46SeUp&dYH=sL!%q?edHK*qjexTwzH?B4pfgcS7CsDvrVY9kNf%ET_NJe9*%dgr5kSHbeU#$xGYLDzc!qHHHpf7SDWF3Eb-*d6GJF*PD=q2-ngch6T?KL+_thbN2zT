@@ -41,7 +41,10 @@ d8P' ?88  d8P' ?88    88P'`?8P'?8b  88P  88P' ?8b    `?88'  ?88d8P' ?88    88P' 
 `?88P'`88b`?88P'`88bd88' d88'  88bd88' d88'   88b      888888P'`?88P'`88bd88'   88b`?888P'  88b
                                                        88P'                                    
                                                       d88                                      
-                                                      ?8P                                                                                                                                                                                            
+ 						      ?8
+[+] Upd 1:
+- Added Fling
+- Added Fling to Cmd Command
 ]])
 
 -------------------------------------------------------
@@ -97,6 +100,7 @@ exit - Exits Roblox
 god - All, Other, Specific Username
 clearconsole - Clears The Console
 changepoisondmg - Changes Damage that the command Poison Does
+fling - All, Other, Specific Username
 
 More Coming Soon...
     ]])
