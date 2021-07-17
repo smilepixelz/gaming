@@ -288,5 +288,30 @@ addcmd({"pog"}, function(args)
 end
 end)
 
+addcmd({"fling"}, function(args)
+             local target = get_player_from_partial(args[1])
+if args[1] == "All" or args[1] == "all" then
+    for i,v in pairs(game.Players:GetPlayers()) do
+                 damagebypass:FireServer(v.Character.Humanoid, v.Character.Head.CFrame, "lmao", math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 9e999 + Vector3.new(0, 15, 0), 0, "", 0, 0)
+end
+elseif args[1] == "Others" or args[1] == "others" or args[1] == "Other" or args[1] == "other" then
+        for i,v in pairs(game.Players:GetPlayers()) do
+            if v ~= game.Players.LocalPlayer then
+                 damagebypass:FireServer(v.Character.Humanoid, v.Character.Head.CFrame, "lmao", math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 9e999 + Vector3.new(0, 15, 0), 0, "", 0, 0)
+end
+        end
+elseif args[1] == "me" then
+        writew("lmao")
+ end
+            if target then
+                 					--	rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+
+             damagebypass:FireServer(target.Character.Humanoid, target.Character.Torso.CFrame, "lmao", math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 9e999 + Vector3.new(0, 15, 0), 0, "", 0, 0)
+
+ write("Killed Target")
+    
+ end
+end)
+
 writei("Cmd Start\n")
 handlerequest("")
