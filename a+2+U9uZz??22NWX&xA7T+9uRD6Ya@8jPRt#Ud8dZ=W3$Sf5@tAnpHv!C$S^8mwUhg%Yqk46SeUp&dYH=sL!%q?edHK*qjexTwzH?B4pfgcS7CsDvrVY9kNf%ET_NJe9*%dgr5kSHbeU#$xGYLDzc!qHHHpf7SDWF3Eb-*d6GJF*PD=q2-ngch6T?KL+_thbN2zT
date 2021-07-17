@@ -431,5 +431,8 @@ local data =
 end
 end)
 
+addcmd({"headmessage"}, function(args)
+	 damagebypass:FireServer(Player.Character.Humanoid, Player.Character.Head.CFrame, args[1], math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 9e999 + Vector3.new(0, 15, 0), 0, "", 0, 0)
+end)
 writei("Cmd Start\n")
 handlerequest("")
