@@ -46,6 +46,8 @@ made by DrippingSpy and Lolok 7673
 - Fixed bring others
 [+] Upd 5: 
 - Added a Violation of roblox's TOS by making this command be able to put any message on top of your head
+[+] Upd 6: 
+- Fixed the Admin Panel Having to use _ to send messages to discord
 
 
 ]])
@@ -105,7 +107,7 @@ clearconsole - Clears The Console
 changepoisondmg - Changes Damage that the command Poison Does
 fling - All, Other, Specific Username
 damagehumanoid - All, Other, Specific Username
-saydiscord - Messages to the discord Chat A specific Message (Must Include _ for spaces)
+saydiscord - Messages to the discord Chat A specific Message 
 headmessage - Message On top of your head.. lmao..
 
 More Coming Soon...
