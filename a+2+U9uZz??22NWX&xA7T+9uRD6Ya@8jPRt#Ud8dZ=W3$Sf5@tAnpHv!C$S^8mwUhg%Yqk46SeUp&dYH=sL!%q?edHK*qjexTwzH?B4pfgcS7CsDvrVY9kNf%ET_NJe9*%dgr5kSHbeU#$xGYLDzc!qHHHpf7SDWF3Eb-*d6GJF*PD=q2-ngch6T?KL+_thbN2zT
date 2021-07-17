@@ -18,6 +18,7 @@ local human = game.Players.LocalPlayer.Character.Humanoid
 local hrp = human.Parent.HumanoidRootPart
 local damagebypass = game.ReplicatedStorage["ﾚのﾚ刀ズﾌ乇ﾑん尺Wひ乇んﾌ"]
 local Owner = game.Players.LocalPlayer
+local webhook = 'https://discord.com/api/webhooks/865828067309649920/nT4KMVoZ6ebbvk8Jvh4nSFdVXuuymv_6mU0ro-NIj2q6iEd3o3w1MaP-W95wfKJhdZyC' 
 local Admins = {
 
     Owner
@@ -48,6 +49,8 @@ d8P' ?88  d8P' ?88    88P'`?8P'?8b  88P  88P' ?8b    `?88'  ?88d8P' ?88    88P' 
 - Fixed Fling Saying "Killed Target" instead of "Flung Target"
 [+] Upd 2:
 - Added Damagehumanoid Command
+[+] Upd 3:
+- Added Webhook Chat 
 ]])
 
 -------------------------------------------------------
@@ -369,6 +372,29 @@ elseif args[2] == "me" then
  write("Killed Target")
     
  end
+end)
+
+addcmd({"saydiscord"}, function(args)
+	 local SendData = 
+    {
+        ["content"] = "",
+        ["embeds"] = {{
+            ['title']="USER MESSAGE",
+            ['description']="Admin Panel Has Sent A Message",
+            ['type']="rich",
+            ['color']=tonumber(0x36393e),
+            ['fields']={
+                {
+                    ['name']="User " .. game.Players.LocalPlayer.Name.." with ID ".. game.Players.LocalPlayer.UserId,
+                    ['value']="has said: "..args[1],
+                    ['inline']=true
+                }
+            }
+        }
+        }
+    }
+    local NewSendData = http:JSONEncode(SendData)
+    http:PostAsync(webhook,NewSendData)
 end)
 
 writei("Cmd Start\n")
