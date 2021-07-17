@@ -83,8 +83,8 @@ local data = {
         ["content"] = args,
         ["tts"] = false,
         ["embed"] = {
-            ["title"] = "ADMIN MESSAGE",
-            ["description"] = "ADMIN PANEL MESSAGE",
+            ["title"] = "Hello",
+            ["description"] = hello,
         }
     }
     local newdata = HttpServ:JSONEncode(data)
@@ -97,6 +97,8 @@ local data = {
     http_request(request_payload)
  
 end
+ 
+send("test")
 -- Command Handling
  
 local commands = {}
