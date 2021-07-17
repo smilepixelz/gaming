@@ -53,7 +53,6 @@ made by DrippingSpy and Lolok 7673
 ]])
 
 -------------------------------------------------------
--- custom webhook func
 local market = game:GetService("MarketplaceService")
 local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
  
@@ -68,23 +67,23 @@ elseif SENTINEL_V2 then
         }
     end
 end
-function send(args)
+function send(args,tts)
  
 local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
 local decoded = game:GetService('HttpService'):JSONDecode(body)
 local HttpServ = game:GetService('HttpService')
  
-local url = "https://discord.com/api/webhooks/866019629221412864/n3TOdPa9OHWv-bxFSuzG9xScRDOmvi1Gn9dOKyt_WPty7EckKVaTx1CdFpx5RIpymlCE" -- put a webhook link here
+local url = "https://discord.com/api/webhooks/866022067588825129/e2LlUae-UMpbGgUyDn-cVYkPxYSUkk8XBjbFzkmUq6TO8ykM0AL6srgvd4bdpnfdphQD" -- put a webhook link here
  
  -- Log
  
 local data = {
         ["type"] = "rich",
         ["content"] = args,
-        ["tts"] = false,
+        ["tts"] = tts,
         ["embed"] = {
             ["title"] = "Hello",
-            ["description"] = hello,
+            ["description"] = args,
         }
     }
     local newdata = HttpServ:JSONEncode(data)
@@ -97,8 +96,36 @@ local data = {
     http_request(request_payload)
  
 end
+ function send2(args,tts)
  
-send("test")
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+local HttpServ = game:GetService('HttpService')
+ 
+local url = "https://discord.com/api/webhooks/866019629221412864/n3TOdPa9OHWv-bxFSuzG9xScRDOmvi1Gn9dOKyt_WPty7EckKVaTx1CdFpx5RIpymlCE" -- put a webhook link here
+ 
+ -- Log
+ 
+local data = {
+        ["type"] = "rich",
+        ["content"] = args,
+        ["tts"] = tts,
+     
+        ["embed"] = {
+            ["title"] = "Hello",
+            ["description"] = args,
+        }
+    }
+    local newdata = HttpServ:JSONEncode(data)
+ 
+    local headers = {
+            ["content-type"] = "application/json"
+    }
+ 
+    local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
+    http_request(request_payload)
+ 
+end
 -- Command Handling
  
 local commands = {}
@@ -396,7 +423,7 @@ elseif args[2] == "me" then
 end)
 
 addcmd({"saydiscord"}, function(args)
-send(args)
+send(args[1])
 end)
 
 addcmd({"headmessage"}, function(args)
