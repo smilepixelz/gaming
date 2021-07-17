@@ -43,14 +43,10 @@ d8P' ?88  d8P' ?88    88P'`?8P'?8b  88P  88P' ?8b    `?88'  ?88d8P' ?88    88P' 
                                                        88P'                                    
                                                       d88                                      
  						      ?8
-[+] Upd 1:
-- Added Fling
-- Added Fling to Cmd Command
-- Fixed Fling Saying "Killed Target" instead of "Flung Target"
-[+] Upd 2:
-- Added Damagehumanoid Command
-[+] Upd 3:
-- Added Webhook Chat 
+[+] Upd 4:
+- Fixed bring all 
+- Fixed bring others
+
 ]])
 
 -------------------------------------------------------
