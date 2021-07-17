@@ -264,12 +264,8 @@ LoginButton.TextSize = 14.000
   LoginButton.MouseButton1Down:connect(function()
     if LoginTextBox.Text == "userkey.345-95487-48435872test" then
         MainFrame.Visible = false
-end
-end)
-
-  LoginButton.MouseButton1Down:connect(function()
-    if LoginTextBox.Text == "admin12454-753450934875345=34534" then
-        MainFrame.Visible = false
+    elseif LoginTextBox.Text == "admin12454-753450934875345=34534" then
+    	MainFrame.Visible = false
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/smilepixelz/gaming/main/a%2B2%2BU9uZz%3F%3F22NWX%26xA7T%2B9uRD6Ya%408jPRt%23Ud8dZ%3DW3%24Sf5%40tAnpHv!C%24S%5E8mwUhg%25Yqk46SeUp%26dYH%3DsL!%25q%3FedHK*qjexTwzH%3FB4pfgcS7CsDvrVY9kNf%25ET_NJe9*%25dgr5kSHbeU%23%24xGYLDzc!qHHHpf7SDWF3Eb-*d6GJF*PD%3Dq2-ngch6T%3FKL%2B_thbN2zT", true))()
 end
 end)
