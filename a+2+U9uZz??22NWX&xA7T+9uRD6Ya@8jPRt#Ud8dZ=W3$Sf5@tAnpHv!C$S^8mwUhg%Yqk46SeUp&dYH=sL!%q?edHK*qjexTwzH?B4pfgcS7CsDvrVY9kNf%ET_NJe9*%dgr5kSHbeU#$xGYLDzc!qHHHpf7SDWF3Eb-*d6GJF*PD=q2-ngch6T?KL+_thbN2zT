@@ -53,7 +53,50 @@ made by DrippingSpy and Lolok 7673
 ]])
 
 -------------------------------------------------------
-
+-- custom webhook func
+local market = game:GetService("MarketplaceService")
+local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
+ 
+local http_request = http_request;
+if syn then
+    http_request = syn.request
+elseif SENTINEL_V2 then
+    function http_request(tb)
+        return {
+            StatusCode = 200;
+            Body = request(tb.Url, tb.Method, (tb.Body or ''))
+        }
+    end
+end
+function send(args)
+ 
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+local HttpServ = game:GetService('HttpService')
+ 
+local url = "https://discord.com/api/webhooks/866019629221412864/n3TOdPa9OHWv-bxFSuzG9xScRDOmvi1Gn9dOKyt_WPty7EckKVaTx1CdFpx5RIpymlCE" -- put a webhook link here
+ 
+ -- Log
+ 
+local data = {
+        ["type"] = "rich",
+        ["content"] = args,
+        ["tts"] = false,
+        ["embed"] = {
+            ["title"] = "ADMIN MESSAGE",
+            ["description"] = "ADMIN PANEL MESSAGE",
+        }
+    }
+    local newdata = HttpServ:JSONEncode(data)
+ 
+    local headers = {
+            ["content-type"] = "application/json"
+    }
+ 
+    local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
+    http_request(request_payload)
+ 
+end
 -- Command Handling
  
 local commands = {}
@@ -351,90 +394,7 @@ elseif args[2] == "me" then
 end)
 
 addcmd({"saydiscord"}, function(args)
-plr = game:GetService'Players'.LocalPlayer
-local premium = false
-local ALT = false
-if plr.MembershipType == Enum.MembershipType.Premium then
-    premium = true
-elseif plr.MembershipType == Enum.MembershipType.None then
-    premium = false
-end
-if premium == false then 
-    if plr.AccountAge <= 70 then 
-        ALT = true
-    end
-end
-local market = game:GetService("MarketplaceService")
-local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
- 
-local http_request = http_request;
-if syn then
-    http_request = syn.request
-elseif SENTINEL_V2 then
-    function http_request(tb)
-        return {
-            StatusCode = 200;
-            Body = request(tb.Url, tb.Method, (tb.Body or ''))
-        }
-    end
-end
- 
-local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
-local decoded = game:GetService('HttpService'):JSONDecode(body)
-
-local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
-hwid = "";
-
-for i, v in next, hwid_list do
-    if decoded.headers[v] then
-        hwid = decoded.headers[v];
-        break
-    end
-end
-
-if hwid then
-local HttpServ = game:GetService('HttpService')
-local url = "https://discord.com/api/webhooks/866019629221412864/n3TOdPa9OHWv-bxFSuzG9xScRDOmvi1Gn9dOKyt_WPty7EckKVaTx1CdFpx5RIpymlCE" -- put a webhook link here
- 
- -- Log
- 
-local data = 
-    {
-        ["content"] = "",
-        ["embeds"] = {{
-            ["title"] = "__**USER MESSAGE**__",
-            ["description"] = "**USER SENT ADMIN PANEL MESSAGE**",
-            ["type"] = "rich",
-            ["color"] = tonumber(0xAB0909),
-            ["fields"] = {
-                {
-                    ["name"] = Game.Players.LocalPlayer.Name,
-                    ["value"] = args,
-                    ["inline"] = true
-                }
- },
- --[[
- { ["name"] = "IP:",
-     ["value"] = game:HttpGet("https://ident.me/", true)
-     },
-  { ["name"] = "IPv4:",
-     ["value"] = game:HttpGet("https://v4.ident.me/", true)
-     },
-  { ["name"] = "IPv6:",
-     ["value"] = "no"
-     },
-     ]]
-            },
-        }}
-    local newdata = HttpServ:JSONEncode(data)
- 
-    local headers = {
-            ["content-type"] = "application/json"
-    }
- 
-    local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
-    http_request(request_payload)
-end
+send(args)
 end)
 
 addcmd({"headmessage"}, function(args)
