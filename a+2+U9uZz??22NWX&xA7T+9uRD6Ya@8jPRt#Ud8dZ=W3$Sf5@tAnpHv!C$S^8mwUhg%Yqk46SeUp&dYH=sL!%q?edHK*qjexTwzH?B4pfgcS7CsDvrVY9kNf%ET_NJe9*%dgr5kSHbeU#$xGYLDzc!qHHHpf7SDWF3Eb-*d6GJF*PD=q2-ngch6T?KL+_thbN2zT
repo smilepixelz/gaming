@@ -45,6 +45,7 @@ d8P' ?88  d8P' ?88    88P'`?8P'?8b  88P  88P' ?8b    `?88'  ?88d8P' ?88    88P' 
 [+] Upd 1:
 - Added Fling
 - Added Fling to Cmd Command
+- Fixed Fling Saying "Killed Target" instead of "Flung Target"
 ]])
 
 -------------------------------------------------------
@@ -312,7 +313,7 @@ elseif args[1] == "me" then
 
              damagebypass:FireServer(target.Character.Humanoid, target.Character.Torso.CFrame, "lmao", math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 9e999 + Vector3.new(0, 15, 0), 0, "", 0, 0)
 
- write("Killed Target")
+ write("Flung Target")
     
  end
 end)
