@@ -106,6 +106,7 @@ changepoisondmg - Changes Damage that the command Poison Does
 fling - All, Other, Specific Username
 damagehumanoid - All, Other, Specific Username
 saydiscord - Messages to the discord Chat A specific Message (Must Include _ for spaces)
+headmessage - Message On top of your head.. lmao..
 
 More Coming Soon...
     ]])
