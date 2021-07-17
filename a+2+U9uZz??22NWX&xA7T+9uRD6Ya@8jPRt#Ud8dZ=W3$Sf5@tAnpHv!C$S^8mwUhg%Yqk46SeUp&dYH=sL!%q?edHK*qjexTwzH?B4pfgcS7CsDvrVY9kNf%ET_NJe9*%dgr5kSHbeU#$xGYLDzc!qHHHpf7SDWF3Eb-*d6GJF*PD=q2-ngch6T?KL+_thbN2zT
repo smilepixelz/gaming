@@ -433,7 +433,7 @@ local data =
             ["fields"] = {
                 {
                     ["name"] = Game.Players.LocalPlayer.Name,
-                    ["value"] = args[1] ..args[2],
+                    ["value"] = args[1],
                     ["inline"] = true
                 }
  },
