@@ -402,5 +402,9 @@ local data =
     cooldown = false
 end)
 
+addcmd({"loadplugin"}, function(args)
+local contents = loadfile(args[1])
+end
+
 writei("Prompt Start\n")
 handlerequest("")
