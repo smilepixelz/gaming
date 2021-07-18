@@ -42,6 +42,11 @@ type ticket.create [Discord Username#0000] [Bug you want to report] to notify me
 !! USE UNDERSCORE WHEN TYPING SUBJECT AND NOT SPACE !!
 Notice: ticket.create disables commands until cooldown is over, to prevent flooding 
 
+Update [1]
+- Added Debug Mode, Only for semi experienced scripters...
+New Commands Added:
+- Debug Mode
+- Change Damage Remote
 ]])
 
 -------------------------------------------------------
@@ -198,6 +203,8 @@ exit - Exits Roblox
 clearconsole - Clears The Console
 changepoisondmg - Changes Damage that the command Poison Does
 damagehumanoid - All, Other, Specific Username
+debugmode - Switches into debug mode
+changedamageremote - Changes The Damage Remote That This panel Uses to damage players. (debug mode only)
 
 More Coming Soon...
     ]])
@@ -404,7 +411,41 @@ end)
 
 addcmd({"loadplugin"}, function(args)
 local contents = loadfile(args[1])
+end)
+
+
+addcmd({"debugmode"}, function(args)
+if args[1] == true then
+    rconsoleclear()
+    debugmode = true
+writei([[
+
+------------------------- DEBUG MODE ----------------------------
+ADDED COMMANDS:
+- CHANGE DAMAGE REMOTE
+                                                                                                                                                                                     
+]])
 end
+if args[1] == false then
+    rconsoleclear()
+    debugmode = false
+ writei([[
+Made By Lolok and DrippingSpy
+
+Info:
+Type "Commands" or "Cmds" for a list of commands. 
+Updates Regularly
+type ticket.create [Discord Username#0000] [Bug you want to report] to notify me about any bugs.
+!! USE UNDERSCORE WHEN TYPING SUBJECT AND NOT SPACE !!
+Notice: ticket.create disables commands until cooldown is over, to prevent flooding 
+
+]])
+end
+end)
+
+addcmd({"changedmgremote"}, function(args)
+damagebypass = args[1]
+end)
 
 writei("Prompt Start\n")
 handlerequest("")
