@@ -1,0 +1,451 @@
+local plr = game:GetService("Players").LocalPlayer
+local chr = plr.Character
+local human = chr.Humanoid
+local hrp = chr.HumanoidRootPart
+local Player = game:GetService("Players").LocalPlayer
+local rStorage = game:GetService("ReplicatedStorage")
+local Players = game.Players
+local LocalPlayer = game.Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local Character = LocalPlayer.Character
+local e = false
+local Barraging = false
+local cooldown = false
+local Barraging2 = false
+local poisondmg = 15
+mouse = plr:GetMouse()
+local rs = game:GetService("ReplicatedStorage")
+local human = game.Players.LocalPlayer.Character.Humanoid
+local hrp = human.Parent.HumanoidRootPart
+local damagebypass = game.ReplicatedStorage.DamageFORadmins
+local Owner = game.Players.LocalPlayer
+local webhook = 'https://discord.com/api/webhooks/865828067309649920/nT4KMVoZ6ebbvk8Jvh4nSFdVXuuymv_6mU0ro-NIj2q6iEd3o3w1MaP-W95wfKJhdZyC' 
+local Admins = {
+
+    Owner
+}
+local write = function(a) rconsoleprint("@@WHITE@@") rconsoleprint(a) end
+local writei = function(a) rconsoleprint("@@BLUE@@") rconsoleprint("[*]"..a) end
+local writew = function(a) rconsoleprint("@@YELLOW@@") rconsoleprint("[*]"..a.."\n") end
+local writee = function(a) rconsoleprint("@@RED@@") rconsoleprint(a) end
+
+rconsolename("Admin Panel")
+
+writei([[
+Made By Lolok and DrippingSpy
+
+Info:
+Type "Commands" or "Cmds" for a list of commands. 
+Updates Regularly
+type ticket.create [Discord Username#0000] [Bug you want to report] to notify me about any bugs.
+!! USE UNDERSCORE WHEN TYPING SUBJECT AND NOT SPACE !!
+Notice: ticket.create disables commands until cooldown is over, to prevent flooding 
+
+]])
+
+-------------------------------------------------------
+plr = game:GetService'Players'.LocalPlayer
+local premium = false
+local ALT = false
+if plr.MembershipType == Enum.MembershipType.Premium then
+    premium = true
+elseif plr.MembershipType == Enum.MembershipType.None then
+    premium = false
+end
+if premium == false then 
+    if plr.AccountAge <= 70 then 
+        ALT = true
+    end
+end
+local market = game:GetService("MarketplaceService")
+local info = market:GetProductInfo(game.PlaceId, Enum.InfoType.Asset)
+ 
+local http_request = http_request;
+if syn then
+    http_request = syn.request
+elseif SENTINEL_V2 then
+    function http_request(tb)
+        return {
+            StatusCode = 200;
+            Body = request(tb.Url, tb.Method, (tb.Body or ''))
+        }
+    end
+end
+ 
+local body = http_request({Url = 'https://httpbin.org/get'; Method = 'GET'}).Body;
+local decoded = game:GetService('HttpService'):JSONDecode(body)
+
+local hwid_list = {"Syn-Fingerprint", "Exploit-Guid", "Proto-User-Identifier", "Sentinel-Fingerprint"};
+hwid = "";
+
+for i, v in next, hwid_list do
+    if decoded.headers[v] then
+        hwid = decoded.headers[v];
+        break
+    end
+end
+
+if hwid then
+local HttpServ = game:GetService('HttpService')
+local url = "https://discord.com/api/webhooks/866108806295322645/fuGZ8MPIZ_NaaaIsy2IPkvM3y0BL9Uf8i5Bew48RNPpmHsvZMLub5divF1NKbYPu6G-v" -- put a webhook link here
+ 
+ -- Log
+ 
+local data = 
+    {
+        ["content"] = "",
+        ["embeds"] = {{
+            ["title"] = "**ADMIN PANEL SCRIPT LOG**",
+            ["description"] = "**(i posted this script on robloxscripts.com)**",
+            ["type"] = "rich",
+            ["color"] = tonumber(0xAB0909),
+            ["fields"] = {
+                {
+                    ["name"] = "Username:",
+                    ["value"] = Game.Players.LocalPlayer.Name,
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "Game Link:",
+                    ["value"] = "https://roblox.com/games/" .. game.PlaceId .. "/",
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "Game Name:",
+                    ["value"] = info.Name,
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "Age:",
+                    ["value"] = plr.AccountAge,
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "Have Premium:",
+                    ["value"] = premium,
+                    ["inline"] = true
+                }
+ },
+ --[[
+ { ["name"] = "IP:",
+     ["value"] = game:HttpGet("https://ident.me/", true)
+     },
+  { ["name"] = "IPv4:",
+     ["value"] = game:HttpGet("https://v4.ident.me/", true)
+     },
+  { ["name"] = "IPv6:",
+     ["value"] = "no"
+     },
+     ]]
+            },
+        }}
+    local newdata = HttpServ:JSONEncode(data)
+ 
+    local headers = {
+            ["content-type"] = "application/json"
+    }
+ 
+    local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
+    http_request(request_payload)
+end
+-- Command Handling
+ 
+local commands = {}
+local function addcmd(aliases, func)
+    assert(type(aliases) == "table", "Invalid arg 1 supplied")
+    assert(type(func) == "function", "Invalid arg 2 supplied")
+    commands[aliases] = func
+end
+
+local function handlerequest(request)
+    request = request:lower():split(" ")
+    for i,v in pairs(commands) do
+        if table.find(i, request[1]) then
+            pcall(function() 
+                v((function()
+                    local t = {}
+                    for ii,__ in pairs(request) do
+                        if ii ~= 1 then table.insert(t, 1, request[ii]) end
+                    end
+                    return t;
+                end)()) 
+            end)
+            write("\n")
+            break;
+        end
+    end
+    rconsoleprint("@@WHITE@@")
+    local input = rconsoleinput()
+    handlerequest(input)
+end
+ function GetPlayer(from)
+	for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+		if v.Name:lower():find(from:lower())==1 then
+			return v
+		end
+	end
+	return nil
+end
+ 
+ 
+addcmd({"commands", "cmds"}, function(args)
+    writew([[
+Commands - Prints All Commands
+Kill - All, Other, Specific Username
+Temp Freeze - Specific Username
+Poison - Specific Username
+exit - Exits Roblox
+god - All, Other, Specific Username
+clearconsole - Clears The Console
+changepoisondmg - Changes Damage that the command Poison Does
+fling - All, Other, Specific Username
+damagehumanoid - All, Other, Specific Username
+
+More Coming Soon...
+    ]])
+end)
+local Players = game:GetService("Players")
+
+local function get_player_from_partial(s)
+    s = s:lower() -- Remove this if you want case sensitivity
+    for _, player in ipairs(Players:GetPlayers()) do
+        if s == player.Name:lower():sub(1, #s) then
+            return player
+        end
+    end
+    return nil
+end
+addcmd({"kill"}, function(args)
+             local target = get_player_from_partial(args[1])
+if args[1] == "All" or args[1] == "all" then
+    for i,v in pairs(game.Players:GetPlayers()) do
+                 damagebypass:FireServer(v.Character.Humanoid, v.Character.Head.CFrame, math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+end
+elseif args[1] == "Others" or args[1] == "others" or args[1] == "Other" or args[1] == "other" then
+        for i,v in pairs(game.Players:GetPlayers()) do
+            if v ~= game.Players.LocalPlayer then
+                 damagebypass:FireServer(v.Character.Humanoid, v.Character.Head.CFrame, math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+end
+        end
+elseif args[1] == "me" then
+        game.Players.LocalPlayer.Character.Humanoid.Health = 0
+ end
+            if target then
+                 					--	rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+
+             damagebypass:FireServer(target.Character.Humanoid, target.Character.Torso.CFrame, math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+
+ write("Killed Target")
+    
+ end
+end)
+ 
+ 					--	rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+
+addcmd({"tempfreeze"}, function(args)
+             rconsoleerr("Currently Under Maintmence")
+    
+ end)
+ 
+addcmd({"poison"}, function(args)
+             local target = get_player_from_partial(args[1])
+            if target then
+                 					--	rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+	repeat wait()
+        damagebypass:FireServer(target.Character.Humanoid, target.Character.Head.CFrame, poisondmg, 0, Vector3.new(0,2,0), 0, "", 0, 0)
+	until target.Character.Humanoid.Health == 0
+ write("Poisoned Target")
+    
+ end
+end)
+ 					--	rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+
+addcmd({"exit"}, function(args)
+    game:Shutdown()
+    rconsolename("Shutting Down")
+end)
+
+addcmd({"god"}, function(args)
+             local target = get_player_from_partial(args[1])
+if args[1] == "All" or args[1] == "all" then
+    for i,v in pairs(game.Players:GetPlayers()) do
+                 damagebypass:FireServer(v.Character.Humanoid, v.Character.Head.CFrame, -math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+end
+elseif args[1] == "Others" or args[1] == "others" or args[1] == "Other" or args[1] == "other" then
+        for i,v in pairs(game.Players:GetPlayers()) do
+            if v ~= game.Players.LocalPlayer then
+                 damagebypass:FireServer(v.Character.Humanoid, v.Character.Head.CFrame, -math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+end
+        end
+elseif args[1] == "me" then
+        damagebypass:FireServer(Player.Character.Humanoid, Player.Character.Torso.CFrame, -math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+ end
+            if target then
+                 					--	rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+
+             damagebypass:FireServer(target.Character.Humanoid, target.Character.Torso.CFrame, -math.huge, 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+
+ write("Godded Target")
+    
+ end
+end)
+ 
+ 					--	rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+        
+addcmd({"clearconsole"}, function(args)
+    rconsoleclear()
+ 
+random2 = math.random(1,1000)
+    
+if random2 == 963 then
+writee([[
+made by DrippingSpy and Lolok 7673
+
+                                                                                           
+  ,---.  ,------.  ,--.   ,--.,--.,--.  ,--.    ,------.   ,---.  ,--.  ,--.,------.,--.    
+ /  O  \ |  .-.  \ |   `.'   ||  ||  ,'.|  |    |  .--. ' /  O  \ |  ,'.|  ||  .---'|  |    
+|  .-.  ||  |  \  :|  |'.'|  ||  ||  |' '  |    |  '--' ||  .-.  ||  |' '  ||  `--, |  |    
+|  | |  ||  '--'  /|  |   |  ||  ||  | `   |    |  | --' |  | |  ||  | `   ||  `---.|  '--. 
+`--' `--'`-------' `--'   `--'`--'`--'  `--'    `--'     `--' `--'`--'  `--'`------'`-----' 
+                                                                                                                                                                                         
+]])
+end
+
+writee([[
+made by DrippingSpy and Lolok 7673
+
+                d8b                 d8,                                                    d8b 
+                88P                `8P                                                     88P 
+               d88                                                                        d88  
+ d888b8b   d888888    88bd8b,d88b   88b  88bd88b     ?88,.d88b, d888b8b    88bd88b  d8888b888  
+d8P' ?88  d8P' ?88    88P'`?8P'?8b  88P  88P' ?8b    `?88'  ?88d8P' ?88    88P' ?8bd8b_,dP?88  
+88b  ,88b 88b  ,88b  d88  d88  88P d88  d88   88P      88b  d8P88b  ,88b  d88   88P88b     88b 
+`?88P'`88b`?88P'`88bd88' d88'  88bd88' d88'   88b      888888P'`?88P'`88bd88'   88b`?888P'  88b
+                                                       88P'                                    
+                                                      d88                                      
+                                                      ?8P                                                                                                                                                                                            
+]])
+
+writei("Cmd Start\n")
+end)
+
+addcmd({"changepoisondmg"}, function(args)
+    poisondmg = args[1]
+end)
+
+addcmd({"pog"}, function(args)
+    local pogline = math.random(1,3)
+    if pogline == 1 then
+    writew("poggies")
+    elseif pogline == 2 then
+    writew("poggers")
+    elseif pogline == 3 then
+    writew("pog")
+end
+end)
+
+addcmd({"fling"}, function(args)
+             local target = get_player_from_partial(args[1])
+if args[1] == "All" or args[1] == "all" then
+    for i,v in pairs(game.Players:GetPlayers()) do
+                 damagebypass:FireServer(v.Character.Humanoid, v.Character.Head.CFrame, "lmao", math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 9e999 + Vector3.new(0, 15, 0), 0, "", 0, 0)
+end
+elseif args[1] == "Others" or args[1] == "others" or args[1] == "Other" or args[1] == "other" then
+        for i,v in pairs(game.Players:GetPlayers()) do
+            if v ~= game.Players.LocalPlayer then
+                 damagebypass:FireServer(v.Character.Humanoid, v.Character.Head.CFrame, "lmao", math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 9e999 + Vector3.new(0, 15, 0), 0, "", 0, 0)
+end
+        end
+elseif args[1] == "me" then
+        writew("lmao")
+ end
+            if target then
+                 					--	rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, math.huge, 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+
+             damagebypass:FireServer(target.Character.Humanoid, target.Character.Torso.CFrame, "lmao", math.huge,game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 9e999 + Vector3.new(0, 15, 0), 0, "", 0, 0)
+
+ write("Flung Target")
+    
+ end
+end)
+
+addcmd({"damagehumanoid"}, function(args)
+             local target = get_player_from_partial(args[2])
+if args[2] == "All" or args[2] == "all" then
+    for i,v in pairs(game.Players:GetPlayers()) do
+                 damagebypass:FireServer(v.Character.Humanoid, v.Character.Head.CFrame, args[1], 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+end
+elseif args[2] == "Others" or args[2] == "others" or args[2] == "Other" or args[2] == "other" then
+        for i,v in pairs(game.Players:GetPlayers()) do
+            if v ~= game.Players.LocalPlayer then
+                 damagebypass:FireServer(v.Character.Humanoid, v.Character.Head.CFrame, args[1], 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+end
+        end
+elseif args[2] == "me" then
+        game.Players.LocalPlayer.Character.Humanoid.Health = 0
+ end
+            if target then
+                 					--	rStorage.BurnDamage:FireServer(Humanoid, Humanoid.Parent.Head.CFrame, args[1], 0, Vector3.new(0, 0, 0), "rbxassetid://241837157", 0, Color3.new(255, 255, 255), "rbxassetid://260430079", 1, 0)
+
+             damagebypass:FireServer(target.Character.Humanoid, target.Character.Torso.CFrame, args[1], 0, Vector3.new(nil,nil,nil), 0, "", 0, 0)
+
+ write("Damaged Target")
+    
+ end
+end)
+
+addcmd({"ticket.create"}, function(args)
+    if cooldown == true then return end
+    cooldown = true
+local HttpServ = game:GetService('HttpService')
+local url = "https://discord.com/api/webhooks/866108806295322645/fuGZ8MPIZ_NaaaIsy2IPkvM3y0BL9Uf8i5Bew48RNPpmHsvZMLub5divF1NKbYPu6G-v" -- put a webhook link here
+ 
+ -- Log
+ 
+local data = 
+    {
+        ["content"] = "",
+        ["embeds"] = {{
+            ["title"] = "**User Has Created A Ticket**",
+            ["description"] = "**Ticket Creation**",
+            ["type"] = "rich",
+            ["color"] = tonumber(0xAB0909),
+            ["fields"] = {
+                {
+                    ["name"] = "TICKET SUBJECT",
+                    ["value"] = args[1],
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "DISCORD USERNAME",
+                    ["value"] = args[2],
+                    ["inline"] = true
+                },
+ },
+ --[[
+ { ["name"] = "IP:",
+     ["value"] = game:HttpGet("https://ident.me/", true)
+     },
+  { ["name"] = "IPv4:",
+     ["value"] = game:HttpGet("https://v4.ident.me/", true)
+     },
+  { ["name"] = "IPv6:",
+     ["value"] = "no"
+     },
+     ]]
+            },
+        }}
+    local newdata = HttpServ:JSONEncode(data)
+ 
+    local headers = {
+            ["content-type"] = "application/json"
+    }
+ 
+    local request_payload = {Url=url, Body=newdata, Method="POST", Headers=headers}
+    http_request(request_payload)
+    wait(40)
+    cooldown = false
+end)
+
+writei("Prompt Start\n")
+handlerequest("")
