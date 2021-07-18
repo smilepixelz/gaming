@@ -409,11 +409,12 @@ local data =
 end)
 
 addcmd({"loadplugin"}, function(args)
-local contents = loadfile(args[1])
+local file
+pcall(function() file = readfile(args[1]) end)
 local valid = isfile(args[1])
 if valid == false then return end
 if valid == true then 
-writei("Plugin Loaded"..args[1].."Successfully")
+writei("Plugin Loaded" ..args[1].. "Successfully")
 end
 end)
 
