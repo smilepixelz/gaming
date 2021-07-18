@@ -43,9 +43,8 @@ type ticket.create [Discord Username#0000] [Bug you want to report] to notify me
 Notice: ticket.create disables commands until cooldown is over, to prevent flooding 
 
 Update [1]
-- Added Debug Mode, Only for semi experienced scripters...
+- Added New Command
 New Commands Added:
-- Debug Mode
 - Change Damage Remote
 ]])
 
@@ -413,6 +412,9 @@ addcmd({"loadplugin"}, function(args)
 local contents = loadfile(args[1])
 local valid = isfile(args[1])
 if valid == false then return end
+if valid == true then 
+writei("Plugin Loaded"..args[1].."Successfully")
+end
 end)
 
 addcmd({"changedmgremote"}, function(args)
